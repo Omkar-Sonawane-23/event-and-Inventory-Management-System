@@ -12,7 +12,7 @@ const departmentSchema = new mongoose.Schema({
             availableResources: {
                 type: Number,
             },
-            useDetails: [
+            Details: [
                 {
                     bookedFor: {
                         type: mongoose.Schema.Types.ObjectId,

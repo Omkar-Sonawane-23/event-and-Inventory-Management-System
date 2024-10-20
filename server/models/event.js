@@ -17,6 +17,9 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    bannerImage: {
+        type: String,
+    },
     status: {
         type: String,
         enum: ['approval pending', 'approved', 'rejected', 'completed'],
@@ -40,14 +43,48 @@ const eventSchema = new mongoose.Schema({
             requestedToDepartment: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Departments'
-            }
+            },
+            alloted: {
+                type: Boolean,
+                default: false
+            },
         }
     ],
     organizerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    }
+    },
+    lastDateOfRegistration: {
+        type: Date,
+    },
+    registeredStudents: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Students',
+        }
+    ],
+    attendedStudents: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Students',
+        }
+    ],
+    rejectedStudents: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Students',
+        }
+    ],
+    registeredCount: {
+        type: Number,
+        default: 0
+    },
+    attendedCount: {
+        type: Number,
+        default: 0
+    },
+
 },
     { timestamps: true }
 );
